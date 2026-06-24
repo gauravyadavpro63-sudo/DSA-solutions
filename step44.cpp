@@ -97,11 +97,30 @@ vector<pair<int,int>> find_pairs_with_given_sum_in_doublylinkedlist(node* head,i
         return box ;
         
 }
+node* remove_duplicate_from_sorted_double__ll(node* head){
+    // tc=O(n) sc=O(1)
+   node* temp=head;
+   while(temp!=NULL&&temp->next!=NULL){
+    node* nextnode=temp->next;
+    while(nextnode!=NULL&&nextnode->data==temp->data){
+        node* duplicate=nextnode;
+        nextnode=nextnode->next;
+        delete duplicate;
+    }
+    if(nextnode) nextnode->previous=temp;
+    temp->next=nextnode;
+
+    temp=temp->next;
+   }
+   return head;
+}
+
 int main(){
  vector<int>arr={2,4,5,1,2,55};
  node* head=convert_arr_to_double_ll(arr);
 //  head=delete_all_occurance_of_key(head,2);
  find_pairs_with_given_sum_in_doublylinkedlist(head,6);
+ remove_duplicate_from_sorted_double_ll(head);
  print(head);
     
 }
