@@ -679,6 +679,45 @@ node* add_two_no_represented_by_ll(node* head1,node*head2){
     return dummy->next;
 
 }
+node* node_at_k(node* head,int k){
+    k--;
+    while(head!=NULL&&k>0){
+        k--;
+        head=head->next;
+    }
+    return head;
+}
+node* reverse_ll_in_group_of_given_size_k(node* head,int k){
+    node* temp=head;
+    node* previousnode=NULL;
+    while(temp){
+         node* kthnode=node_at_k(temp,k);
+    if(kthnode==NULL){
+        if(previousnode){
+         previousnode->next=temp;
+         break;
+        }
+        else{
+            break;
+        }
+    } 
+    node* nextnode=kthnode->next;
+    kthnode->next=NULL;
+    reverse(temp);
+    if(head==temp){
+        head=kthnode;
+    }
+    else{
+        previousnode->next=kthnode;
+
+    }
+    previousnode=temp;
+    temp=nextnode;
+
+}
+return head;
+   
+}
 int main(){
     vector<int>arr={1,2,3,4,5};
     node* head=arrtoLL(arr);
@@ -701,6 +740,14 @@ int main(){
 //    head= sort_a_ll_with_zero_one_two(head);
 //    cout<<intersectin_point_of_y_ll(head1,head2);
     //  cout<<add_one_to_number_represented_by_ll(head);
-    cout<<add_two_no_represented_by_ll(head1,head2);
+    // cout<<add_two_no_represented_by_ll(head1,head2);
+    // print(head);
+
+
+
+    // hard questin on ll
+
+    head=reverse_ll_in_group_of_given_size_k(head,3);
+    
     print(head);
 }
