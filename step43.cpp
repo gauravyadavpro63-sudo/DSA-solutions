@@ -718,6 +718,138 @@ node* reverse_ll_in_group_of_given_size_k(node* head,int k){
 return head;
    
 }
+node* rotate_ll_by_k_times(node* head,int k){
+    int length=1; node* tail=head;
+    while(tail->next!=NULL){
+        length++;
+        tail=tail->next;
+    }
+    int r=k%length;
+    if(r==0) return head;
+     tail->next=head;
+    int nthnode=length-r;
+    nthnode--;
+    node* temp=head;
+    while(temp&&nthnode>0){
+        temp=temp->next;
+        nthnode--;
+    }
+    head=temp->next;
+    temp->next=NULL;
+    return head;
+    
+}
+// node* arr_to_ll(vector<int>arr){
+//     node* head=new node(arr[0]);
+//     node* temp=head;
+//     for(int i=1;i<arr.size();i++){
+//         node* box=new node(arr[i],nullptr);
+//         temp->child=box;
+//         temp=temp->child;
+//     }
+//     return head;
+// }
+//
+node* mergenode(node* lasthead,node* head){
+    node* dummy=new node(-1,nullptr);
+    node* temp=dummy;
+    while(lasthead!=NULL&&head!=NULL){
+         if(lasthead->data<head->data){
+           temp->child=lasthead;
+           lasthead=lasthead->child;
+           temp=temp->child;
+         }
+         else{
+            temp->child=head;
+            head=head->child;
+            temp=temp->child;
+         }
+         temp->next=nullptr;
+    
+    }
+         if(head){
+            temp->child=head;
+         }
+         else{
+            temp->child=lasthead;
+         }
+    return dummy->child;
+}
+node* flattering_of_ll(node* head){
+    //  brute force Total: O(N log N) time, O(N) extra space. where n is total number of nodes
+//     vector<int>arr;
+//     node* temp=head;
+//     while(temp){
+//         node* t2=temp;
+//         while(t2!=NULL){
+//             arr.push_back(t2->data);
+//             t2=t2->child;
+//         }
+        
+//         temp=temp->next;
+//     }
+//     sort(arr.begin(),arr.end());
+//     head=arr_to_ll(arr);
+//     return head;
+// optimal solution 2NM sc=O(n) recursion space
+if(head==NULL||head->next==NULL) return head;
+node* lasthead=flattering_of_ll(head->next);
+return mergenode(lasthead,head);
+}
+node* clone_a_ll_with_random_and_next_pointer(node* head){
+    // tc=O(2n) sc=O(n)
+    // node* temp=head;
+    // unordered_map<node*,node*>mpp;
+    // while(temp){
+    //     node* copy=new node(temp->data);
+    //     mpp[temp]=copy;
+    //     temp=temp->next;
+    // }
+    // temp=head;
+    
+    // while(temp){
+    //  node* copy=mpp[temp];
+    //  copy->next=mpp[temp->next];
+    //  copy->random=mpp[temp->random];
+    //  copy=copy->next;
+    //  temp=temp->next;
+
+    // }
+    // temp=head;
+    // return mpp[temp];
+    // optimal solution  tc=O(3n) sc=O(1)
+//     node* temp=head;
+//     while(temp){
+//         node* copynode=new node(temp->data);
+//         copynode->next=temp->next;
+//         temp->next=copynode;
+//         temp=temp->next->next;
+
+//     }
+//     temp=head;
+//     while(temp){
+       
+//         node* copynode=temp->next;
+//         if(temp->random==NULL){
+//             copynode->random=NULL;
+//         }
+//         else{
+//         copynode->random=temp->random->next;
+//             }
+//             temp=temp->next->next;
+//     }
+//     node* dummy=new node(-1);
+//     temp=head;
+//     node* mover=dummy;
+//     while(temp){
+//       mover->next=temp->next;
+//       temp->next=temp->next->next;
+//       mover=mover->next;
+//       temp=temp->next;
+//     }
+//     return dummy->next;
+    
+// }
 int main(){
     vector<int>arr={1,2,3,4,5};
     node* head=arrtoLL(arr);
@@ -747,7 +879,9 @@ int main(){
 
     // hard questin on ll
 
-    head=reverse_ll_in_group_of_given_size_k(head,3);
-    
+    // head=reverse_ll_in_group_of_given_size_k(head,3);
+    // head=rotate_ll_by_k_times(head,3);
+    // flattering_of_ll(head);
+    clone_a_ll_with_random_and_next_pointer(head);
     print(head);
 }
