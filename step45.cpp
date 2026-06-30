@@ -93,7 +93,7 @@ using namespace std;
 //     cout << myAtoi("   -12345abc");
 // }          
 // }
-double myownpow(double base,int exponential){
+// double myownpow(double base,int exponential){
 // brute force tc=O(n) sc=O(1)
 // long long n=exponential;
 // if(n<0){
@@ -126,7 +126,112 @@ double myownpow(double base,int exponential){
 // return ans;
 // }
 
-// int main(){
+
+// optimal  solution tc=logn sc=(1) 
+// long long mod=1e9+7;
+// long long value(long long base,long long expo){
+//     long long ans=1;
+//     while(expo){
+//         if(expo%2==1){
+//           ans=ans*base%mod;
+//           expo=expo-1;
+
+//          }
+//         else{
+//           base=base*base%mod;
+//           expo=expo/2;
+//         }
+//     }
+//     return ans%mod;
+// }
+// long long goodnumber(long long n){
+    // long long even=(n+1)/2;
+    // long odd=n/2;
+    // return (value(5,even)*value(4,odd))%mod;
+// }
+
+
+// recursive solution tc=o(logn) sc=(logn)
+
+
+// long long mod = 1e9 + 7;
+
+// long long value(long long base, long long expo) {
+//     long long ans = 1;
+
+//     while (expo) {
+//         if (expo % 2 == 1) {
+//             ans = ans * base % mod;
+//             expo = expo - 1;
+//         } else {
+//             base = base * base % mod;
+//             expo = expo / 2;
+//         }
+//     }
+
+//     return ans % mod;
+// }
+
+// long long goodnumber(long long n) {
+//     long long even = (n + 1) / 2;
+//     long long odd = n / 2;
+
+//     return (value(5, even) * value(4, odd)) % mod;
+// }
+
+void insert(stack<int>&st,int x){
+     if(st.empty()||x>st.top()){
+        st.push(x);
+        return;
+     }
+     int temp=st.top();
+     st.pop();
+     insert(st,x);
+     st.push(temp);
+
+}
+// void stack_element_in_decresing_order(stack<int>&st){
+    //  stack<int>temp;
+// while(!st.empty()){
+//     int x=st.top();
+//     st.pop();
+//     while(!temp.empty()&&x>temp.top()){
+//        st.push(temp.top());
+//        temp.pop();
+//     }
+//     temp.push(x);
+// }
+// while(!temp.empty())
+//     st.push(temp.top());
+//     temp.pop();
+// }
+//   if(st.empty()) return ;
+//   int x=st.top();
+//   st.pop();
+//   stack_element_in_decresing_order(st);
+//   insert(st,x);
+// }
+
+void insertreverse(stack<int>&st,int x){
+     if(st.empty()){
+        st.push(x);
+        return;
+     }
+     int temp=st.top();
+     st.pop();
+     insertreverse(st,x);
+     st.push(temp);
+
+
+}
+void stack_element_in_reverse_order(stack<int>&st){
+    if(st.empty()) return;
+    int x=st.top();
+    st.pop();
+    stack_element_in_reverse_order(st);
+    insertreverse(st,x);
+}
+int main(){
     
     // string no=" 12223s";
 //     char* ptr=&no[0];
@@ -134,6 +239,21 @@ double myownpow(double base,int exponential){
 //     cout<<value;
 // cout<<myatoi(no);
 // cout<<pow(2,10);
- cout<<myownpow(2,10);
+//  cout<<myownpow(2,10);
+//  cout<<goodnumber(12);
 
+
+ stack<int>st;
+ st.push(5);
+ st.push(2);
+ st.push(1);
+ st.push(3);
+ st.push(4);
+//  stack_element_in_decresing_order(st);
+  stack_element_in_reverse_order(st);
+  while(!st.empty()){
+    cout<<st.top()<<" ";
+    st.pop();
+
+  }
 }
