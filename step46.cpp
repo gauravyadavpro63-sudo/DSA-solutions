@@ -50,11 +50,36 @@ void generate_all_parenethesis(int n){
     for(auto it:ans){
         cout<<it<<" ";
     }
-    
+}
+void solve(string current,int index,string s){
+      if(index==s.size()){
+        cout<<"\""<<current<<"\""<<endl;
+        return;
+      }
+      solve(current+s[index],index+1,s);
+      solve(current,index+1,s);   
+}
+void generate_all_subsequence_of_string(string s){
+    // versuion 1 tc=O(n*2^n) for version 2 same tc
+    // int n=s.length();
+    // int total=1<<n;
+    // for(int x=0;x<total;x++){
+    //     for(int i=0;i<n;i++){
+    //         if(x&(1<<i)){
+    //             cout<<s[i];
+    //         }
+    //     }
+    //     cout<<endl;
+    // }
+    int index=0;
+    int n=s.size();
+    string current="";
+    solve(current,index,s);
 }
 int main(){
 int n=2;
 
 // generate_all_binary_string(n);
-generate_all_parenethesis(n);
+// generate_all_parenethesis(n);
+generate_all_subsequence_of_string("abc");
 }
