@@ -126,23 +126,49 @@ void generate_all_subsequence_of_string(string s){
 //     solve(index,ans,solving,arr,sum);
 
 // }
-int solve(int index,int solving,vector<int>arr,int sum){
-     if(index==arr.size()){
-        if(solving==sum){
-            return 1;
-        }
-        return 0;
-     }
-     solving+=arr[index];
-     int l=solve(index+1,solving,arr,sum);
-     solving-=arr[index];
-     int r=solve(index+1,solving,arr,sum);
-     return l+r;
+// int solve(int index,int solving,vector<int>arr,int sum){
+    //  if(index==arr.size()){
+        // if(solving==sum){
+//             return 1;
+//         }
+//         return 0;
+//      }
+//      solving+=arr[index];
+//      int l=solve(index+1,solving,arr,sum);
+//      solving-=arr[index];
+//      int r=solve(index+1,solving,arr,sum);
+//      return l+r;
+// }
+// int no_of_subsequence_of_sum_2(int sum,vector<int>arr){
+//     int index=0;
+//     int solving=0;
+//    return solve(index,solving,arr,sum);
+// }
+void solve(vector<int>arr,int target,vector<int>&current,vector<vector<int>>&ans,int index){
+  if(index==arr.size()){
+    if(target==0){
+        ans.push_back(current);
+    }
+    return ;
+  }
+  if(arr[index]<=target){
+    current.push_back(arr[index]);
+    solve(arr,target-arr[index],current,ans,index);
+    current.pop_back();
+  }
+  solve(arr,target,current,ans,index+1);
 }
-int no_of_subsequence_of_sum_2(int sum,vector<int>arr){
-    int index=0;
-    int solving=0;
-   return solve(index,solving,arr,sum);
+void combination_sum(vector<int>arr,int target){
+vector<int>current;
+vector<vector<int>>ans;
+int index=0;
+solve(arr,target,current,ans,index);
+for(auto it :ans){
+    for(auto x:it){
+        cout<<x<<" ";
+    }
+    cout<<endl;
+}
 }
 int main(){
 // int n=2;
@@ -150,10 +176,12 @@ int main(){
 // generate_all_binary_string(n);
 // generate_all_parenethesis(n);
 // generate_all_subsequence_of_string("abc");
-vector<int>arr={1,2,1};
-int sum=2;
+// vector<int>arr={1,2,1};
+// int sum=2;
 // print_all_subsequence_of_sum_2(sum,arr);
 // print_one_subsequence_of_sum_2(sum,arr);
-cout<<no_of_subsequence_of_sum_2(sum,arr);
+// cout<<no_of_subsequence_of_sum_2(sum,arr);
+vector<int>arr={2,3,6,7};
+combination_sum(arr,7);
 
 }
