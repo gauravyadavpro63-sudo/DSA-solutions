@@ -274,28 +274,86 @@ solve(index,ans,sum,arr,solving);
     //     cout<<it<<" ";
     // }
 // }
-void solving(vector<int>nums,vector<vector<int>>&ans,int index,vector<int>solve){
-    ans.push_back(solve);
+// void solving(vector<int>nums,vector<vector<int>>&ans,int index,vector<int>solve){
+//     ans.push_back(solve);
     
- for(int i=index;i<nums.size();i++){
-        if(i>index&&nums[i]==nums[i-1]){
-            continue;
-        }
-        solve.push_back(nums[i]);
-        solving(nums,ans,i+1,solve);
-        solve.pop_back();
+//  for(int i=index;i<nums.size();i++){
+//         if(i>index&&nums[i]==nums[i-1]){
+//             continue;
+//         }
+//         solve.push_back(nums[i]);
+//         solving(nums,ans,i+1,solve);
+//         solve.pop_back();
+//     }
+// }
+// void sum_of_all_subsetII(vector<int>nums){
+// // brute (list use kar lo);
+//     // optimal
+//     sort(nums.begin(),nums.end());
+//     vector<vector<int>>ans;
+//     int index=0;
+//     vector<int>solve;
+//     solving(nums,ans,index,solve);
+    
+    
+
+// }
+// void solve(vector<vector<int>>&ans,vector<int>&current,int k,int n,int start){
+//     if(current.size()==k){
+//         if(n==0){
+//             ans.push_back(current);
+//         }
+//         return;
+//     }
+//     for(int i=start;i<=9;i++){
+//        current.push_back(i);
+//        solve(ans,current,k,n-i,i+1);
+//        current.pop_back();
+//     }
+
+// }
+// void combinationIII(int k,int n){
+//     vector<vector<int>>ans;
+//     vector<int>current;
+//     int sum=0;
+//     int start=1;
+//     solve(ans,current,k,n,start);
+//     for(auto it:ans){
+//         for(auto k:it){
+//             cout<<k<<" ";
+//         }
+//         cout<<endl;
+//     }
+
+// }
+void solve(vector<string>&ans,string &current,int index,vector<string>letters,string digits){
+    if(index==digits.size()){
+        ans.push_back(current);
+        return;
+    }
+    string currentletter=letters[digits[index]-'0'];
+    for(char ch:currentletter){
+       current.push_back(ch);
+       solve(ans,current,index+1,letters,digits);
+       current.pop_back();
     }
 }
-void sum_of_all_subsetII(vector<int>nums){
-// brute (list use kar lo);
-    // optimal
-    sort(nums.begin(),nums.end());
-    vector<vector<int>>ans;
+void letter_combination_of_phone_number(string digits){
+    vector<string>ans;
+    string current;
     int index=0;
-    vector<int>solve;
-    solving(nums,ans,index,solve);
-    
-    
+    if(digits.size()==0){
+        return ;
+    }
+    vector<string>letters={
+        "","","abc","def",
+        "ghi","jkl","mno",
+        "pqrs","tuv","wxyz"
+    };
+    solve(ans,current,index,letters,digits);
+    for(auto it:ans){
+        cout<<it<<" ";
+    }
 
 }
 int main(){
@@ -312,8 +370,10 @@ int main(){
 // vector<int>arr={10,1,2,7,6,1,5};
 // combination_sum(arr,7);
 // combinationII(arr,8);
-vector<int>arr={1,2,3};
+// vector<int>arr={1,2,3};
 // sum_of_all_subset(arr);
-sum_of_all_subsetII(arr);
+// sum_of_all_subsetII(arr);
+// combinationIII(3,7);1
+letter_combination_of_phone_number("23");
 
 }
