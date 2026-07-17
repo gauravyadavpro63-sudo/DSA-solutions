@@ -64,4 +64,6 @@ int  main(){
     // seil is same as lower bound but there we have to return the element not index
     // floor  arr[index]<=x(greatest element);
     // cout<<floor(arr,0,5,target);  tc=O(log2n) sc=O(1)
+
+//
 }
