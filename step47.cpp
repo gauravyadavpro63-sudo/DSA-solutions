@@ -201,24 +201,84 @@ using namespace std;
 
 // }
 // tc=n*2^n worst
-bool solve(unordered_set<string>&dictionary,string &word,int index){
-    if(index==word.size()) return true;
-    string box="";
-    for(int i=index;i<word.size();i++){
-         box.push_back(word[i]);
-         if(dictionary.find(box)!=dictionary.end()){
-            if(solve(dictionary,word,i+1)){
-                return true;
-            }
-         }
-    }
-    return false;
-}
-bool word_break(vector<string>dict,string word){
-    unordered_set<string>dictionary(dict.begin(),dict.end());
-     return solve(dictionary,word,0);
+// bool solve(unordered_set<string>&dictionary,string &word,int index){
+//     if(index==word.size()) return true;
+//     string box="";
+//     for(int i=index;i<word.size();i++){
+//          box.push_back(word[i]);
+//          if(dictionary.find(box)!=dictionary.end()){
+//             if(solve(dictionary,word,i+1)){
+//                 return true;
+//             }
+//          }
+//     }
+//     return false;
+// }
+// bool word_break(vector<string>dict,string word){
+//     unordered_set<string>dictionary(dict.begin(),dict.end());
+//      return solve(dictionary,word,0);
 
-}
+// }
+// tc=O(node*(color^nodes))
+// sc
+// Recursion stack : O(n)
+// Color array     : O(n)
+// bool possible(bool graph[101][101],int color[],int currentnode,int node,int i){
+//     for(int k=0;k<node;k++){
+//        if(k!=currentnode&&graph[currentnode][k]!=0&&color[k]==i){
+//             return false;
+//        }
+//     }
+//     return true;
+// }
+// bool m_coloring(bool graph[101][101],int node,int color[],int currentnode,int m){
+
+//     if(currentnode==node){
+//         return true;
+//     }
+    
+//     for(int i=1;i<=m;i++){
+//         if(possible(graph,color,currentnode,node,i)==true){
+//             color[currentnode]=i;
+//             if(m_coloring(graph,node,color,currentnode+1,m)==true){
+//                 return true;
+//             }
+//             color[currentnode]=0;
+//         }
+//     }
+//     return false;
+// }
+
+// O(9^E), where E is the number of empty cells.\
+O(E) due to the recursion stack. Since Sudoku has a fixed size (9×9), this becomes O(1).
+//    bool solving(vector<vector<char>>& board,int rows,int columns){
+//     for(int i=0;i<rows;i++){
+//         for(int j=0;j<columns;j++){
+//             if(board[i][j]=='.'){
+//                 for(char a='1';a<='9';a++){
+//                     if(valid(board,i,j,a)==true){
+//                         board[i][j]=a;
+//                         if(solving(board,rows,columns)==true){
+//                             return true;
+//                         }
+//                         board[i][j]='.';
+                        
+//                     }
+//                 }
+//                 return false;
+//             }
+//         }
+//     }
+//     return true;
+//    }
+//    bool valid(vector<vector<char>>&board,int rows,int columns,char a){
+//     for(int i=0;i<9;i++){
+//         if(board[rows][i]==a) return false;
+//         if(board[i][columns]==a) return false;
+//         if(board[3*(rows/3)+i/3][3*(columns/3)+i%3]==a) return false;
+//     }
+//     return true;
+//    }
 int main(){
     // cout<<palindrom_partioning("aab");
     // vector<vector<char>>board={{'A', 'B', 'C', 'E'}, {'S', 'F', 'C', 'S'},{'A', 'D', 'E', 'E'}};
@@ -245,7 +305,23 @@ int main(){
 //         }
 //         cout<<endl;
 //     }   
-vector<string>dict={"leet","code"};
-string word="leetcode";
-cout<<word_break(dict,word);
+// vector<string>dict={"leet","code"};
+// string word="leetcode";
+// cout<<word_break(dict,word);
+
+// int nodes = 4;
+// int m=3;
+// bool graph[101][101] = {
+//     {0,1,1,0},
+//     {1,0,1,1},
+//     {1,1,0,0},
+//     {0,1,0,0}
+// };
+// int colour[nodes]={0};
+// int currentnode=0;
+// cout<<m_coloring(graph,nodes,colour,currentnode,m);
+
+//  int rows=board.size();
+//         int columns=board[0].size();
+//         solving(board,rows,columns);
 }
