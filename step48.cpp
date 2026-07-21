@@ -22,9 +22,51 @@ using namespace std;
 // }
 // return num;
 // }
-bool CheckNthBitIsSetOrNot(int a,int n){
-    if((a&(1<<n))!=0) return true;
-    else return false;
+// bool CheckNthBitIsSetOrNot(int a,int n){
+//     if((a&(1<<n))!=0) return true;
+   
+//     else return false;
+// }
+int divide_two_integer_without_divider(int numerator,int denomenator){
+    // ✅ Time: O(|dividend| / |divisor|)
+// ✅ Space: O(1)
+//     long long count=0;
+//     long long copynumerator=abs((long long)numerator);
+//     long long copydenomenator=abs((long long)denomenator);
+//     bool sign =true;
+//       if(numerator>=0&&denomenator<0) sign=false; 
+//        if(numerator<=0&&denomenator>0) sign=false;
+//     if(denomenator==0) return 0;
+//     if (numerator == INT_MIN && denomenator == -1)
+//     return INT_MAX;
+
+//     while(copynumerator>=copydenomenator){
+//           copynumerator-=copydenomenator;
+//           count++;
+//     }
+
+//     return sign?count:-1*count;
+long long copynumerator=abs((long long)numerator);
+long long copydenomenator=abs((long long)denomenator);
+bool sign =true;
+if(numerator>=0&&denomenator<0) sign=false;
+if(numerator<=0&&denomenator>0) sign=false;
+if(denomenator==0) return 0;
+long long ans=0;
+while(copynumerator>=copydenomenator){
+    int shift=0;
+    while(copynumerator>=(copydenomenator<<(shift+1))){
+        shift++;
+    }
+    ans=ans+(1<<shift);
+    copynumerator=copynumerator-(copydenomenator<<shift);
+
+}
+if(ans==1<<31&&sign) return INT_MAX;
+if(ans==1<<31&&!sign) return INT_MIN;
+return sign?ans:-1*ans;
+
+
 }
 int main(){
     // int n;
@@ -49,8 +91,8 @@ int main(){
 // b=a^b;
 // a=a^b;
 // cout<<a<<b;
-int a=23;
-int n=2;
+// int a=23;
+// int n=2;
 // cout<<CheckNthBitIsSetOrNot(a,n);
 
 // set nth  bit 
@@ -96,8 +138,11 @@ int n=2;
 // cout<<count;
 
 //check no is odd or not
-return a & 1;
+// return a & 1;
 // Binary of odd numbers always end with 1:
+int numerator=32;
+ int denomenator=3;
+cout<<divide_two_integer_without_divider(numerator,denomenator);
 
 
 }
