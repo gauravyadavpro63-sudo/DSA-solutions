@@ -1,2 +1,3 @@
-f(a%2==1) count++;
-    a=a/2;
+o_flip(int a,int b){
+//     int result=a^b;
+//     int count=0;
