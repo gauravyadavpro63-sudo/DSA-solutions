@@ -241,39 +241,67 @@ using namespace std;
 // approach 2
 
 
- class queuee{
-    public:
-    stack<int> st1;
-    stack<int>st2;
-    void push(int x){
-        st1.push(x);
-    }
-    void pop(){
-        if(st1.empty()&&st2.empty()){
-         return;
-        }
-        if(!st2.empty()){
-            st2.pop();
-        }
-        else{
-        while(!st1.empty()){
-             st2.push(st1.top());
-             st1.pop();
-        }
-        st2.pop();
-    }
+//  class queuee{
+//     public:
+//     stack<int> st1;
+//     stack<int>st2;
+//     void push(int x){
+//         st1.push(x);
+//     }
+//     void pop(){
+//         if(st1.empty()&&st2.empty()){
+//          return;
+//         }
+//         if(!st2.empty()){
+//             st2.pop();
+//         }
+//         else{
+//         while(!st1.empty()){
+//              st2.push(st1.top());
+//              st1.pop();
+//         }
+//         st2.pop();
+//     }
         
-    }
-    int top(){
-        if(st1.empty()&&st2.empty()) return -1;
-        if(!st2.empty()) return st2.top();
-        while(!st1.empty()){
-            st2.push(st1.top());
-            st1.pop();
-        }
-        return st2.top();
-    }
-};
+//     }
+//     int top(){
+//         if(st1.empty()&&st2.empty()) return -1;
+//         if(!st2.empty()) return st2.top();
+//         while(!st1.empty()){
+//             st2.push(st1.top());
+//             st1.pop();
+//         }
+//         return st2.top();
+//     }
+// };
+
+
+// bool balanced_paranthesis(string s){
+//     stack<char>st;
+//     int n=s.size();
+//     for(int i=0;i<n;i++){
+//         if(s[i]=='('||s[i]=='['||s[i]=='{'){
+//             st.push(s[i]);
+//         }
+//         else{
+//             if(st.empty()) return false;
+//             char c=st.top();
+//             if((c=='('&&s[i]==')')||(c=='{'&&s[i]=='}')||(c=='['&&s[i]==']')) {
+//                 st.pop();
+//             }
+//             else{
+//                 return false;
+//             }
+//         }
+  
+// }
+
+//   if(st.empty()) return true;
+//     else return false;
+    
+// }
+
+
 int main()
 {
 
@@ -312,8 +340,11 @@ int main()
 //     cout<<qu.top();
 
 
-queuee qe;
-qe.push(2);
-qe.push(3);
-cout<<qe.top();
+// queuee qe;
+// qe.push(2);
+// qe.push(3);
+// cout<<qe.top();
+// string  s="(){[]}";
+// cout<< balanced_paranthesis(s);
+
 }
