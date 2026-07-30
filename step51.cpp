@@ -301,7 +301,63 @@ using namespace std;
     
 // }
 
+//  implement minimum stack
 
+class stackk{
+    // brute force tc=O(1) sc=O(2n);
+//     public:
+//     stack<pair<int,int>>st;
+//     int minn=INT_MAX;
+//     void push(int x){
+//         pair<int,int> a=make_pair(x,min(x,minn));
+//         st.push(a);
+//         minn=min(x,minn);
+//     }
+//     void pop(){
+//         st.pop();
+//     }
+//     int top(){
+//         return st.top().first;
+//     }
+//     int minstack(){
+//         return st.top().second;
+//     }
+
+// optimal solution sc and tc=O(1);
+public:
+stack<int>st;
+int minn=INT_MAX;
+
+void push(int x){
+     if(st.empty()){ 
+        st.push(x);
+        minn=min(x,minn);
+     }
+     else{
+          if(minn<x) st.push(x);
+          else{
+            int newx=2*x-minn;
+            st.push(newx);
+            minn=min(x,minn);
+          }        
+     }
+}
+void pop(){
+    if(st.empty()) return ;
+    int x=st.top();
+    st.pop();
+    if(x<minn){
+    minn=2*minn-x;
+}
+}
+int top(){
+    if(st.top()>minn) return st.top();
+    return minn;
+}
+int minstack(){
+    return minn;
+}
+};
 int main()
 {
 
@@ -346,5 +402,11 @@ int main()
 // cout<<qe.top();
 // string  s="(){[]}";
 // cout<< balanced_paranthesis(s);
+
+
+stackk st;
+st.push(2);
+st.push(3);
+cout<<st.minstack();
 
 }
