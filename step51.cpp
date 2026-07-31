@@ -331,7 +331,7 @@ int minn=INT_MAX;
 void push(int x){
      if(st.empty()){ 
         st.push(x);
-        minn=min(x,minn);
+        minn=x;
      }
      else{
           if(minn<x) st.push(x);
