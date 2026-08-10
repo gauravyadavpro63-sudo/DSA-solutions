@@ -162,62 +162,85 @@ using namespace std;
 // return total;
 
 // }
-vector<int> functionfront(vector<int> arr){
-    int n=arr.size();
-    vector<int>ans(n);
-    stack<int>st;
-    for(int i=n-1;i>=0;i--){
-        while(!st.empty()&&arr[st.top()]>=arr[i]){
-            st.pop();
-        }
-        if(st.empty()){
-            ans[i]=n;
-        }
-        else{
-            ans[i]=st.top();
-        }
-        st.push(i);
-    }
-    return ans;
+// vector<int> functionfront(vector<int> arr){
+//     int n=arr.size();
+//     vector<int>ans(n);
+//     stack<int>st;
+//     for(int i=n-1;i>=0;i--){
+//         while(!st.empty()&&arr[st.top()]>=arr[i]){
+//             st.pop();
+//         }
+//         if(st.empty()){
+//             ans[i]=n;
+//         }
+//         else{
+//             ans[i]=st.top();
+//         }
+//         st.push(i);
+//     }
+//     return ans;
     
-}
-vector<int>functionback(vector<int>arr){
-    int n=arr.size();
-    vector<int>ans(n);
-    stack<int>st;
-    for(int i=0;i<n;i++){
-       while(!st.empty()&&arr[st.top()]>arr[i]){
-        st.pop();
-       }
-       if(st.empty()){
-        ans[i]=-1;
-       }
-       else {
-        ans[i]=st.top();
-       }
-       st.push(i);
-    }
-    return ans;
-}
- int sum_of_subarray_minimum(vector<int>arr){
+// }
+// vector<int>functionback(vector<int>arr){
+//     int n=arr.size();
+//     vector<int>ans(n);
+//     stack<int>st;
+//     for(int i=0;i<n;i++){
+//        while(!st.empty()&&arr[st.top()]>arr[i]){
+//         st.pop();
+//        }
+//        if(st.empty()){
+//         ans[i]=-1;
+//        }
+//        else {
+//         ans[i]=st.top();
+//        }
+//        st.push(i);
+//     }
+//     return ans;
+// }
+//  int sum_of_subarray_minimum(vector<int>arr){
 
-    vector<int>previossmallerindex=functionback(arr);
-    vector<int>nextsmallerindex=functionfront(arr);
-    long long mod=1e9+7;
-    long long ans=0;
-    long long leftelements=0;
-    long long rightelements=0;
-    int n=arr.size();
-    for(int i=0;i<n;i++){
-        leftelements=i-previossmallerindex[i];
-        rightelements=nextsmallerindex[i]-i;
-        ans=(ans+(leftelements*1LL*rightelements*arr[i])%mod)%mod;
-    }
-    return ans;
- }
-    int main()
+//     vector<int>previossmallerindex=functionback(arr);
+//     vector<int>nextsmallerindex=functionfront(arr);
+//     long long mod=1e9+7;
+//     long long ans=0;
+//     long long leftelements=0;
+//     long long rightelements=0;
+//     int n=arr.size();
+//     for(int i=0;i<n;i++){
+//         leftelements=i-previossmallerindex[i];
+//         rightelements=nextsmallerindex[i]-i;
+//         ans=(ans+(leftelements*1LL*rightelements*arr[i])%mod)%mod;
+//     }
+//     return ans;
+//  }
+// list<int> asteroid_collision(vector<int>arr){
+//      int n=arr.size();
+//      list<int>ans;
+//      for(int i=0;i<n;i++){
+//            while(!ans.empty()&&arr[i]<0&&ans.back()>0&&ans.back()<abs(arr[i])){
+//             ans.pop_back();
+//            }
+//             if(arr[i]>0){
+//             ans.push_back(arr[i]);
+//            }
+//            else if(!ans.empty()&&arr[i]<0&&ans.back()==abs(arr[i])){
+//             ans.pop_back();
+//            }
+//            else if(ans.empty() || ans.back()<0){
+//                 ans.push_back(arr[i]);
+//            }
+//      }
+//      return ans;
+// }
+// int sum_of_subarray_range(arr){
+//     int ans=sum_of_subarray_maximum(arr)-sum_of_subarray_minimum(arr);
+//     return ans;
+// }
+//     int main()
 {
-    vector<int> arr = {4, 5, 2, 10, 8};
+    // vector<int> arr = {4, 5, 2, 10, 8};
     //     for(auto it:next_greater_element(arr)){
     //         cout<<it<<" ";
     //     }
@@ -231,5 +254,10 @@ vector<int>functionback(vector<int>arr){
     // vector<int>buildings={0,1,0,2,1,0,1,3,2,1,2,1};
     // cout<<traping_rain_water(buildings);
 
-    cout<<sum_of_subarray_minimum(arr);
+    // cout<<sum_of_subarray_minimum(arr);
+    // vector<int>arr={10, 20, -10};
+    // for(auto it:asteroid_collision(arr)){
+    //      cout<<it<<" ";
+    // }
+    // cout<<sum_of_subarray_range();
 }
