@@ -238,7 +238,39 @@ using namespace std;
 //     int ans=sum_of_subarray_maximum(arr)-sum_of_subarray_minimum(arr);
 //     return ans;
 // }
-//     int main()
+//   string remove_k_digit(string s,int k){
+//     sc=n tc=n
+//     stack<char>st;
+//     int n=s.size();
+//     for(int i=0;i<n;i++){
+//     while(!st.empty()&&k>0&&st.top()-'0'>s[i]-'0'){
+//         st.pop();
+//         k--;
+//     }
+//     st.push(s[i]);
+//   }
+//   string ans="";
+//   while(!st.empty()&&k>0){
+//     st.pop();
+//     k--;
+//   }
+//   if(st.empty()){
+//     return "0";
+//   }
+//   while(!st.empty()){
+//     ans+=st.top();
+//     st.pop();
+//   }
+//   while(!ans.empty()&&ans.back()=='0'){
+//     ans.pop_back();
+//   }
+//   if(ans.length()==0) return "0";
+//   else{
+//     reverse(ans.begin(),ans.end());
+//   }
+//   return ans;
+// }
+    int main()
 {
     // vector<int> arr = {4, 5, 2, 10, 8};
     //     for(auto it:next_greater_element(arr)){
@@ -260,4 +292,9 @@ using namespace std;
     //      cout<<it<<" ";
     // }
     // cout<<sum_of_subarray_range();
+     string nums = "541892";
+     int k=2;
+     for(auto it : remove_k_digit(nums,k)){
+        cout<<it<<" ";
+     }
 }
