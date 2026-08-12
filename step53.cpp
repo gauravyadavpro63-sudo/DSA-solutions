@@ -290,28 +290,50 @@ int area_of_largest_rectangle_in_histogram(vector<int>arr){
 // optimal solution
 // TC = O(n)
 // SC = O(n)
-// stack<int>st;
-// int n=arr.size();
-// int area=0;
-// for(int i=0;i<n;i++){
-//     while(!st.empty()&&arr[st.top()]>arr[i]){
-//         int element=st.top();
-//         st.pop();
-//         int nse=i;
-//         int pse=st.empty()?-1:st.top();
-//         area=max(area,arr[element]*(nse-pse-1));
-//     }
-//     st.push(i);
-// }
-// while(!st.empty()){
-//     int nse=n;
-//     int element=st.top();
-//     st.pop();
-//     int pse=st.empty()?-1:st.top();
-//     area=max(area,arr[element]*(nse-pse-1));
-// }
-// return area;
-// }
+stack<int>st;
+int n=arr.size();
+int area=0;
+for(int i=0;i<n;i++){
+    while(!st.empty()&&arr[st.top()]>arr[i]){
+        int element=st.top();
+        st.pop();
+        int nse=i;
+        int pse=st.empty()?-1:st.top();
+        area=max(area,arr[element]*(nse-pse-1));
+    }
+    st.push(i);
+}
+while(!st.empty()){
+    int nse=n;
+    int element=st.top();
+    st.pop();
+    int pse=st.empty()?-1:st.top();
+    area=max(area,arr[element]*(nse-pse-1));
+}
+return area;
+}
+
+int maximum_rectangle_area(vector<vector<int>> arr){
+ int area=0;
+ int rows=arr.size();
+ int columns=arr[0].size();
+ vector<int>rectangle(columns,0);
+ for(int i=0;i<rows;i++){
+    for(int j=0;j<columns;j++){
+      if(arr[i][j]==1){
+        rectangle[j]+=1;
+      }
+        else{
+            rectangle[j]=0;
+        }
+
+      }
+    
+    area=max(area,area_of_largest_rectangle_in_histogram(rectangle));
+ }
+ return area;
+
+}
     int main()
 {
     // vector<int> arr = {4, 5, 2, 10, 8};
@@ -339,6 +361,8 @@ int area_of_largest_rectangle_in_histogram(vector<int>arr){
     //  for(auto it : remove_k_digit(nums,k)){
     //     cout<<it<<" ";
     //  }
-vector<int>arr= {2,1,5,6,2,3};
-    cout<<area_of_largest_rectangle_in_histogram(arr);
+// vector<int>arr= {2,1,5,6,2,3};
+//     cout<<area_of_largest_rectangle_in_histogram(arr);
+    vector<vector<int>>arr={{1,0,1,0,0},{1,0,1,1,1},{1,1,1,1,1},{1,0,0,1,0}};
+    cout<<maximum_rectangle_area(arr);
 }
