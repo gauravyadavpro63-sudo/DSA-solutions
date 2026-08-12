@@ -270,6 +270,48 @@ using namespace std;
 //   }
 //   return ans;
 // }
+
+int area_of_largest_rectangle_in_histogram(vector<int>arr){
+//     PSE calculation → O(n)
+// NSE calculation → O(n)
+// Area loop       → O(n)
+// --------------------------------
+// Total           → O(n + n + n)
+//                 → O(3n)
+//                 → O(n)
+//   vector<int>nse=next_smaller_element(arr);
+//   vector<int>pse=previous_smaller_element(arr);
+//   int n=arr.size();
+//   int area=0;
+//   for(int i=0;i<n;i++){
+//    area=max(area,(nse[i]-pse[i]-1)*arr[i]);
+//   }
+//   return area;
+// optimal solution
+// TC = O(n)
+// SC = O(n)
+// stack<int>st;
+// int n=arr.size();
+// int area=0;
+// for(int i=0;i<n;i++){
+//     while(!st.empty()&&arr[st.top()]>arr[i]){
+//         int element=st.top();
+//         st.pop();
+//         int nse=i;
+//         int pse=st.empty()?-1:st.top();
+//         area=max(area,arr[element]*(nse-pse-1));
+//     }
+//     st.push(i);
+// }
+// while(!st.empty()){
+//     int nse=n;
+//     int element=st.top();
+//     st.pop();
+//     int pse=st.empty()?-1:st.top();
+//     area=max(area,arr[element]*(nse-pse-1));
+// }
+// return area;
+// }
     int main()
 {
     // vector<int> arr = {4, 5, 2, 10, 8};
@@ -292,9 +334,11 @@ using namespace std;
     //      cout<<it<<" ";
     // }
     // cout<<sum_of_subarray_range();
-     string nums = "541892";
-     int k=2;
-     for(auto it : remove_k_digit(nums,k)){
-        cout<<it<<" ";
-     }
+    //  string nums = "541892";
+    //  int k=2;
+    //  for(auto it : remove_k_digit(nums,k)){
+    //     cout<<it<<" ";
+    //  }
+vector<int>arr= {2,1,5,6,2,3};
+    cout<<area_of_largest_rectangle_in_histogram(arr);
 }
