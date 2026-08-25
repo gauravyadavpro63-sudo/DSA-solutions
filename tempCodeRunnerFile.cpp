@@ -1,18 +1,37 @@
- longest_repeating_character_replacement(string s,int k){
-    int maxi=0;
+string minimum_window_substring(string s,string t){
+    
+    int maxlength=INT_MAX;
+     int start=-1;   
+    unordered_map<char,int>need;
+    for(auto it:t){
+      need[it]++;
+    }
     int n=s.size();
     for(int i=0;i<n;i++){
-        unordered_map<int,int>mpp;
-        int maxfreq=0;
+        unordered_map<char,int>window;
         for(int j=i;j<n;j++){
-         mpp[s[j]]++;
-         maxfreq=max(maxfreq,mpp[s[j]]);
-         int length=j-i+1;
-         int change=length-maxfreq;
-         if(change<=k){
-            maxi=max(maxi,length);
-         }       
+             window[s[j]]++;
+             int valid=true;  
+            for(auto [first,second]:need){
+                if(window[first]<second){
+                    valid=false;
+                    break;
+                }
+            }
+            if(valid==true){
+                if(j-i+1<maxlength){
+                    maxlength=j-i+1;
+                    start=i;
+                }
+            }
         }
     }
-    return maxi;
+    
+    
+    
+    if(start==-1) return "";
+    
+    string ans=s.substr(start,maxlength);
+    return ans;
+    
 }
