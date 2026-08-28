@@ -220,8 +220,6 @@ int main(){
     m1.delette();
     m1.print();
 
-
-    
 }
 
 
