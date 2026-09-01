@@ -86,18 +86,114 @@ using namespace std;
 //     }
 
 // }
+
+// int Task_sheduler(vector<char>tasks,int n){
+    // Time Complexity: O(N)
+// Space Complexity: O(26) = O(1)
+//     int size=tasks.size();
+//     vector<int>hashmap(26,0);
+//     for(int i=0;i<size;i++){
+//         hashmap[tasks[i]-'A']++;
+//     }
+//      int maxfreq=0;
+//     for(int i=0;i<size;i++){
+//       maxfreq=max(maxfreq,hashmap[i]);
+//     }
+//    int count=0;
+//     for(int i=0;i<size;i++){
+//        if(hashmap[i]==maxfreq){
+//         count++;
+//        }
+//     }
+
+//     return max((maxfreq-1)*(n+1)+count,size);
+
+//    priority_queue solution
+
+// Frequency counting → O(N)
+// Heap operations → effectively O(N log 26) → O(N)
+// Space → O(26) → O(1)
+
+//  int size=tasks.size();
+//  vector<int>hashmap(26,0);
+//  for(int i=0;i<size;i++){
+//     hashmap[tasks[i]-'A']++;
+//  }
+//  priority_queue<int>pq;
+//  for(int i=0;i<hashmap.size();i++){
+//     if(hashmap[i]>0){
+//         pq.push(hashmap[i]);
+//     }
+//  }
+
+//  int time=0;
+//  while(!pq.empty()){
+//     vector<int>temp;
+//     for(int i=0;i<=n;i++){
+//         if(!pq.empty()){
+//       int f=pq.top();
+//       pq.pop();
+//       f--;
+//       if(f>0){
+//         temp.push_back(f);
+//       }
+//       time++;
+//     }
+//     else{
+//         if(temp.empty()){
+//             break;
+//         }
+//         time++;
+//     }
+//     }
+//     for(auto it:temp){
+//         pq.push(it);
+//     }
+//  }
+//  return time;
+// }
+
+// bool hands_of_straight(vector<int>hand,int groupsize){
+    // O(N log N)
+    //    int size=hand.size();
+    //    if(size%groupsize!=0) return false;
+    //    map<int,int>mpp;
+    //    for(int i=0;i<size;i++){
+    //     mpp[hand[i]]++;
+    //    }
+
+    //     while(!mpp.empty()){
+    //         int minn=mpp.begin()->first;
+    //         for(int i=0;i<groupsize;i++){
+    //           int card=minn+i;
+    //           if(mpp.find(card)==mpp.end()) return false;
+    //           mpp[card]--;
+    //           if(mpp[card]==0) mpp.erase(card);
+    //         }
+    //     }
+    //     return true;
+// }
 int main(){
     // vector<int>arr={2,3,11,22,1,2,1};
 //     // cout<<is_array_represent_min_heap(arr);
 //     int k=2;
 // cout<<    kth_largest_element_in_arr(arr,k);
-vector<int>arr = {6, 5, 3, 2, 8, 10, 9};
+// vector<int>arr = {6, 5, 3, 2, 8, 10, 9};
 // int k = 3;
 //  k_sorted_array(arr,k);
 
 //linkdin question do later bro after reading revising linkdlist;
 
 
-replace_element_by_its_rank_in_array(arr);
+// replace_element_by_its_rank_in_array(arr);
+// vector<char>tasks = {'A','A','A','B','B','B'};
+// int n=2;
+// cout<<Task_sheduler(tasks,n);
 
+// vector<int>hand = {1,2,3,6,2,3,4,7,8}; 
+// int groupsize = 3;
+// cout<<hands_of_straight(hand,groupsize);
+
+
+   
 }
