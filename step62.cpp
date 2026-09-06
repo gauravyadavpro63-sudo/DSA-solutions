@@ -82,42 +82,42 @@ using namespace std;
 //  return true;
 // }
 
-bool solve(string s ,int i, int count){
+// bool solve(string s ,int i, int count){
   
-  if(count<0) return false;
-  if(i==s.size()){
-    if(count==0) return true;
-    else return false;
-  }
-  if(s[i]=='(') return solve(s,i+1,count+1);
-  if(s[i]==')') return solve(s,i+1,count-1);
-  else return solve(s,i+1,count+1)||solve(s,i+1,count-1)||solve(s,i+1,count);
-}
-bool valid_paranthesis_checker(string s){
-  // brute force Time  = O(3^k) // Space = O(n)
-// return solve(s,0,0);
-// optimal solution 
-int n=s.size();
-int min=0;
-int max=0;
-for(int i=0;i<n;i++){
-  if(s[i]=='('){
-    min+=1;
-    max+=1;
-  }
-  else if(s[i]==')'){
-    min-=1;
-    max-=1;
-  }
-  else{
-    min-=1;
-    max+=1;
-  }
-  if(min<0) min=0;
-  if(max<0) return false;
-}
-if(min==0) return true;
-}
+//   if(count<0) return false;
+//   if(i==s.size()){
+//     if(count==0) return true;
+//     else return false;
+//   }
+//   if(s[i]=='(') return solve(s,i+1,count+1);
+//   if(s[i]==')') return solve(s,i+1,count-1);
+//   else return solve(s,i+1,count+1)||solve(s,i+1,count-1)||solve(s,i+1,count);
+// }
+// bool valid_paranthesis_checker(string s){
+//   // brute force Time  = O(3^k) // Space = O(n)
+// // return solve(s,0,0);
+// // optimal solution 
+// int n=s.size();
+// int min=0;
+// int max=0;
+// for(int i=0;i<n;i++){
+//   if(s[i]=='('){
+//     min+=1;
+//     max+=1;
+//   }
+//   else if(s[i]==')'){
+//     min-=1;
+//     max-=1;
+//   }
+//   else{
+//     min-=1;
+//     max+=1;
+//   }
+//   if(min<0) min=0;
+//   if(max<0) return false;
+// }
+// if(min==0) return true;
+// }
 int main(){
 // vector<int>greed = {1, 2, 3};
 // vector<int>cookies = {1, 2};
