@@ -69,7 +69,7 @@ using namespace std;
 
 // }
 
-int minimum_number_of_platform(vector<int>arrival,vector<int>departure){
+// int minimum_number_of_platform(vector<int>arrival,vector<int>departure){
     // brute force tc = n*n
     // int n=arrival.size();
     // int ans=0;
@@ -89,25 +89,169 @@ int minimum_number_of_platform(vector<int>arrival,vector<int>departure){
  
     // optimal solution    tc=O(n);
 
-    int n=arrival.size();
-    sort(arrival.begin(),arrival.end());
-    sort(departure.begin(),departure.end());
-    int i=0;
-    int j=0;
-    int count=0;
-    int  platform=0;
-    while(i<n&&j<n){
-        if(arrival[i]<departure[j]){
-            i++;
-            platform++;
-            count=max(count,platform);
-        }
-        else{
-            j++;
-            platform--;
-        }
-    }
-    return count;
+    // int n=arrival.size();
+    // sort(arrival.begin(),arrival.end());
+    // sort(departure.begin(),departure.end());
+    // int i=0;
+    // int j=0;
+    // int count=0;
+    // int  platform=0;
+    // while(i<n&&j<n){
+    //     if(arrival[i]<departure[j]){
+    //         i++;
+    //         platform++;
+    //         count=max(count,platform);
+    //     }
+    //     else{
+    //         j++;
+    //         platform--;
+    //     }
+    // }
+    // return count;
+// }
+
+// vector<int> job_sequence_problem(vector<vector<int>>jobs){
+//     Sorting             → O(N log N)
+// Finding slots       → O(N × D)
+// Space               → O(N + D)
+
+// vector<pair<int,int>>v;
+// int max_deadline=0;
+// for(auto it:jobs){
+//     v.push_back({it[2],it[1]});
+//     max_deadline=max(max_deadline,it[1]);
+// }
+// sort(v.rbegin(),v.rend());
+
+
+// int totaljobs=0;
+// int totalprofit=0;
+// vector<bool>trackdeadline(max_deadline+1,false);
+
+// for(auto it:v){
+//     int profit=it.first;
+//     int deadline=it.second;
+//     for(int i=deadline;i>=1;i--){
+//         if(trackdeadline[i]==false){
+//             totaljobs++;
+//             totalprofit+=profit;
+//             trackdeadline[i]=true;
+//              break;
+//         }
+//     }
+// }
+
+// return {totaljobs,totalprofit};
+// }
+
+
+
+
+int candy(vector<int>rating){
+    // brute force solution
+
+    // Time: O(2n)
+// Space: O(2n)
+    // int n=rating.size();
+    // vector<int>left(n,0);
+    // vector<int>right(n,0);
+    // left[0]=1;
+    // right[n-1]=1;
+    // for(int i=1;i<n;i++){
+    //     if(rating[i-1]>=rating[i]){
+    //         left[i]=1;
+    //     }
+    //     else{
+    //         left[i]=left[i-1]+1;
+    //     }
+    // }
+
+    // for(int j=n-2;j>=0;j--){
+    //     if(rating[j+1]>=rating[j]){
+    //         right[j]=1;
+    //     }
+    //     else{
+    //         right[j]=right[j+1]+1;
+    //     }
+    // }
+    // int sum=0;
+    // for(int i=0;i<n;i++){
+    //    sum+=max(left[i],right[i]);
+    // }
+    // return sum;
+
+//   better solution
+// Time: O(2n)
+// Space: O(n)
+
+//         int n=rating.size();
+//     vector<int>left(n,0);
+   
+//     left[0]=1;
+//     for(int i=1;i<n;i++){
+//         if(rating[i-1]>=rating[i]){
+//             left[i]=1;
+//         }
+//         else{
+//             left[i]=left[i-1]+1;
+//         }
+//     }
+//     int current=1;
+//     int right=1;
+//    int  sum=max(1,left[n-1]);
+//     for(int j=n-2;j>=0;j--){
+//         if(rating[j+1]>=rating[j]){
+//             current=1;
+//         }
+//         else{
+//             current=current+1;
+//             right=current;
+//         }
+//         sum+=max(left[j],current);
+//     }
+//     // int sum=0;a
+//     // for(int i=0;i<n;i++){
+//     //    sum+=max(left[i],right[i]);
+//     // }
+//     return sum;
+
+
+// optimal solution
+
+int n=rating.size();
+int sum=1;
+int i=1;
+
+while(i<n){
+if(rating[i]==rating[i-1]){
+sum+=1;
+i++;
+continue; 
+
+}
+int peak=1;
+while(i<n&&rating[i]>rating[i-1]){
+     peak+=1;
+    sum+=peak;
+   
+    i++;
+
+}
+int down=1;
+while(i<n&&rating[i]<rating[i-1]){
+ 
+  sum+=down;
+   down++;
+  i++;
+}
+if(down>peak){
+    sum+=down-peak;
+}
+
+
+
+}
+return sum;
 
 
 }
@@ -126,8 +270,20 @@ int main(){
 // vector<int>nums = {2,3,1,1,4};
 // cout<<jump_game_2(nums);
 
-vector<int>arrival   = {900, 940, 950, 1100, 1500, 1800};
-vector<int>departure = {910, 1200, 1120, 1130, 1900, 2000};
+// vector<int>arrival   = {900, 940, 950, 1100, 1500, 1800};
+// vector<int>departure = {910, 1200, 1120, 1130, 1900, 2000};
 
-cout<<minimum_number_of_platform(arrival,departure);
+// cout<<minimum_number_of_platform(arrival,departure);
+
+// vector<vector<int>>jobs={{1, 4, 20}, {2, 1, 10}, {3, 1, 40}, {4, 1, 30}};
+
+// for(auto it:job_sequence_problem(jobs)){
+//     cout<<it<<" ";
+// }
+
+
+vector<int>rating = {1, 0, 5};
+cout<<candy(rating);  
+
+
 }
