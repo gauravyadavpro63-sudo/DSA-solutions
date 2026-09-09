@@ -147,7 +147,7 @@ using namespace std;
 
 
 
-int candy(vector<int>rating){
+// int candy(vector<int>rating){
     // brute force solution
 
     // Time: O(2n)
@@ -218,42 +218,79 @@ int candy(vector<int>rating){
 
 // optimal solution
 
-int n=rating.size();
-int sum=1;
-int i=1;
+// int n=rating.size();
+// int sum=1;
+// int i=1;
 
-while(i<n){
-if(rating[i]==rating[i-1]){
-sum+=1;
-i++;
-continue; 
+// while(i<n){
+// if(rating[i]==rating[i-1]){
+// sum+=1;
+// i++;
+// continue; 
 
-}
-int peak=1;
-while(i<n&&rating[i]>rating[i-1]){
-     peak+=1;
-    sum+=peak;
+// }
+// int peak=1;
+// while(i<n&&rating[i]>rating[i-1]){
+//      peak+=1;
+//     sum+=peak;
    
-    i++;
+//     i++;
 
-}
-int down=1;
-while(i<n&&rating[i]<rating[i-1]){
+// }
+// int down=1;
+// while(i<n&&rating[i]<rating[i-1]){
  
-  sum+=down;
-   down++;
-  i++;
-}
-if(down>peak){
-    sum+=down-peak;
-}
+//   sum+=down;
+//    down++;
+//   i++;
+// }
+// if(down>peak){
+//     sum+=down-peak;
+// }
 
 
 
-}
-return sum;
+// }
+// return sum;
+
+// }
+
+// double sortest_job_first(vector<int>jobs){
+//     int n=jobs.size();
+//     sort(jobs.begin(),jobs.end());
+//     int interval=0;
+//     int totalInterval=0;
+//     for(int i=0;i<n;i++){
+//        totalInterval+=interval;
+//        interval+=jobs[i];
+//     }
+//     return double(totalInterval/n);
+// }
 
 
+vector<vector<int>> insertInterval(vector<vector<int>>Intervals,vector<int>newInterval){
+
+    int n=Intervals.size();
+    int i=0;
+    vector<vector<int>>ans;
+    int start=newInterval[0];
+    int end=newInterval[1];
+    while(i<n&&Intervals[i][1]<newInterval[0]){
+        ans.push_back(Intervals[i]);
+        i++;
+    }
+    while(i<n&&Intervals[i][0]<=end){
+   start=min(Intervals[i][0],start);
+   end=max(Intervals[i][1],end);
+    i++;
+    }
+    ans.push_back({start,end});
+    while(i<n){
+        ans.push_back(Intervals[i]);
+        i++;
+    }
+
+    return ans;
 }
 int main(){
 // int  n = 6;
@@ -282,8 +319,20 @@ int main(){
 // }
 
 
-vector<int>rating = {1, 0, 5};
-cout<<candy(rating);  
+// vector<int>rating = {1, 0, 5};
+// cout<<candy(rating);  
+
+// vector<int>jobs={3, 1, 4, 2, 5};
+// cout<<sortest_job_first(jobs);
+ vector<vector<int>>Intervals ={ {1, 3}, {6, 9} };
+  vector<int>newInterval = {2, 5};
+ 
+ for(auto it:insertInterval(Intervals,newInterval)){
+    for(auto k:it){
+        cout<<k<<" ";
+    }
+    cout<<endl;
+ }
 
 
 }
